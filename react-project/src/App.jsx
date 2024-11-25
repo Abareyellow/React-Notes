@@ -1,9 +1,17 @@
 import './App.css'
+import chef from "./images/chef.jpg"
 
 //let language = "Katie";
 //let sun = "🌞";
 
-let items = ["Brownies", "Cakes", "Cookies"]
+let items = ["Brownies", "Cakes", "Cookies", "Brookies"]
+
+const dishObjects = items.map((dish, i) => ({
+  id: i,
+  title: dish
+}));
+
+console.log(dishObjects)
 
 function Header({name, year}) {
   return (
@@ -16,11 +24,14 @@ function Header({name, year}) {
 
 function Main({menu}) {
   return (
-    <ul>
-      {menu.map((dish) => (
-        <li>{dish}</li>
-      ))}
-    </ul>
+    <main>
+      <img src={chef} height={200} alt="A photo of a chef"/>
+      <ul>
+        {menu.map((dish) => (
+          <li key={dish.id} style={{listStyleType: "none"}}>{dish.title}</li>
+        ))}
+      </ul>
+    </main>
   );
 }
 
@@ -28,7 +39,7 @@ function App() {
   return (
     <div>
       <Header name="Katie" year={2024}/>
-      <Main menu={items}/>
+      <Main menu={dishObjects}/>
     </div>
   );
 }
